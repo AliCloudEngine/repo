@@ -43,7 +43,7 @@ ACE Sdk Maven Repository Configuration
 </span><span class="sc1">&lt;project&gt;</span></div>
 
 <h2>
-Cooma Maven Dependency Sample
+Maven Dependency Sample
 </h2>
 
 <div style="white-space: pre; line-height: 1; background: #000000; "><span class="sc1">&lt;project&gt;</span><span class="sc0">
