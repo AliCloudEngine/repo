@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Metaframe Maven Repository</title>
+<title>ACE Sdk Maven Repository</title>
 
 <style type="text/css">
 span {
@@ -24,11 +24,11 @@ span {
 <h2>It Works!</h2>
 
 <p>
-Welcome to Metaframe Maven Repository!
+Welcome to ACE Sdk Maven Repository!
 </p>
 
 <h2>
-Metaframe Maven Repository Configuration
+ACE Sdk Maven Repository Configuration
 </h2>
 
 <div style="white-space: pre; line-height: 1; background: #000000; ">
