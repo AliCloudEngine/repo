@@ -21,8 +21,6 @@ span {
 </head>
 <body>
 
-<h2>It Works!</h2>
-
 <p>
 Welcome to ACE Sdk Maven Repository!
 </p>
