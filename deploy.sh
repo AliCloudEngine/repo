@@ -9,11 +9,11 @@ else
 	comment="$1"
 fi
 
-(
-	cat head.txt ; 
-	(find com -type f | sed 's#.*#<a href="./\0">./\0</a><br/>#' ) ; 
+{
+	cat head.txt
+	find com -type f | sed 's#.*#<a href="./\0">./\0</a><br/>#'
 	cat tail.txt
-) > index.html &&
+} > index.html &&
 git add . &&
 git commit -m "$comment" &&
 time git push
