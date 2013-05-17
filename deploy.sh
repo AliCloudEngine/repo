@@ -3,11 +3,7 @@
 cd `dirname $0`
 BASE=`pwd`
 
-if [ -z "$1" ] ; then
-	comment=update
-else
-	comment="$1"
-fi
+comment=${1:-update}
 
 {
 	cat head.txt
