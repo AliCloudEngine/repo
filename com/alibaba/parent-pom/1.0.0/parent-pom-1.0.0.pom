@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.alibaba</groupId>
+	<artifactId>parent-pom</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+        <name>Parent pom for alibaba</name>
+
+        <!-- ======================================================================== -->
+        <!--  Predefined properties          -->
+        <!-- ======================================================================== -->
+        <properties>
+                <!--  compiler settings -->
+                <java_source_version>1.6</java_source_version>
+                <java_target_version>1.6</java_target_version>
+                <file_encoding>GBK</file_encoding>
+
+                <!--  plugin versions -->
+                <maven_compiler_plugin_version>2.5.1</maven_compiler_plugin_version>
+                <maven_source_plugin_version>2.1.1</maven_source_plugin_version>
+                <maven_jar_plugin_version>2.2</maven_jar_plugin_version>
+		<maven_javadoc_plugin_version>2.8</maven_javadoc_plugin_version>
+                <maven_war_plugin_version>2.2</maven_war_plugin_version>
+		<maven_car_plugin_version>0.1-SNAPSHOT</maven_car_plugin_version>
+		<maven_site_plugin_version>2.2</maven_site_plugin_version>
+		<maven_eclipse_plugin_version>2.5.1-alibaba-1-SNAPSHOT</maven_eclipse_plugin_version>
+                <build_helper_plugin_version>1.4</build_helper_plugin_version>
+                <build_number_plugin_version>0.1</build_number_plugin_version>
+                <maven_deploy_plugin_version>2.6</maven_deploy_plugin_version>
+		<pampas_rules_version>1.0</pampas_rules_version>
+		<maven_pv_plugin_version>1.1-SNAPSHOT</maven_pv_plugin_version>
+		<versions_maven_plugin>2.1</versions_maven_plugin>
+        </properties>
+
+        <!-- ======================================================================== -->
+        <!--  Common URL setup          -->
+        <!-- ======================================================================== -->
+        <scm>
+                <url>http://svn.alibaba-inc.com/repos/ali_platform/maven/pom/parent</url>
+        </scm>
+
+	<!-- ======================================================================== -->
+	<!--  Distribution Management - Children POMs should provide their own!       -->
+	<!-- ======================================================================== -->
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>http://repo.alibaba-inc.com/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>http://repo.alibaba-inc.com/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>		
+	</distributionManagement>
+	
+	<!-- ======================================================================== -->
+	<!--  Repositories and plugin Repositories redefine the central repositories -->
+	<!-- ======================================================================== -->
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry</url>
+                </repository>
+	</repositories>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry</url>
+		</pluginRepository>
+  	</pluginRepositories>
+
+
+        <!-- ======================================================================== -->
+	<!--  Build Pluin configurations                                              -->
+	<!-- ======================================================================== -->
+	<!-- TODO - configure enforcer and version plugins -->
+	<build>
+		<plugins>				
+			<!-- Java Compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven_compiler_plugin_version}</version>
+				<configuration>
+					<source>${java_source_version}</source>
+					<target>${java_target_version}</target>
+					<encoding>${file_encoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- Jar package resource -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven_source_plugin_version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+			</plugin>
+			
+			<!-- Javadoc plugin-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+                                <version>${maven_javadoc_plugin_version}</version>
+				<configuration>
+					<charset>${file_encoding}</charset>
+					<encoding>${file_encoding}</encoding>
+				</configuration>
+			</plugin>			
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+ 				<version>${maven_war_plugin_version}</version> 
+
+				<configuration>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-jar-plugin</artifactId>
+				 <version>${maven_jar_plugin_version}</version> 
+
+				<configuration>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.alibaba.maven.plugins</groupId>
+				<artifactId>maven-car-plugin</artifactId>
+				<version>${maven_car_plugin_version}</version>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+                                <version>${maven_site_plugin_version}</version>
+				<configuration>
+					<outputEncoding>${file_encoding}</outputEncoding>
+					<inputEncoding>${file_encoding}</inputEncoding>
+				</configuration>
+			</plugin>
+
+			<!-- Customized Eclipse plugin that will set project encoding correctly -->
+			<plugin>
+				<groupId>com.alibaba.org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+                                <version>${maven_eclipse_plugin_version}</version>
+				<configuration>
+					<addVersionToProjectName>true</addVersionToProjectName>
+					<downloadSources>true</downloadSources>
+					<projectTextFileEncoding>${file_encoding}</projectTextFileEncoding>
+				</configuration>
+			</plugin>
+			
+			<!-- maven-deploy-plugin  -->
+			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId> 
+  				<artifactId>maven-deploy-plugin</artifactId> 
+  				<version>${maven_deploy_plugin_version}</version> 
+  			</plugin>
+			<!-- maven-pv-check -->
+                        <plugin>
+    				<groupId>com.alibaba.maven.plugins</groupId>
+    				<artifactId>maven-pv-plugin</artifactId>
+    				<version>${maven_pv_plugin_version}</version>
+    				<executions>
+      					<execution>
+        					<id>check</id>
+        					<phase>prepare-package</phase>
+        					<goals>
+          						<goal>check</goal>
+        					</goals>
+        					<configuration>
+          						<checkPackaging>war,ali-war</checkPackaging>
+          						<checkWithoutScope>test,provided</checkWithoutScope>
+        					</configuration>
+      					</execution>
+    				</executions>
+			</plugin>	
+
+			<!-- versions-maven-plugin -->	
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+			        <artifactId>versions-maven-plugin</artifactId>
+			        <version>${versions_maven_plugin}</version> 
+			</plugin>	
+		</plugins>
+
+
+	<!-- ======================================================================== -->
+	<!-- resource directories                                                     -->
+	<!-- ======================================================================== -->	
+
+		<resources>
+                        <resource>
+                                <directory>src/main/resources</directory>
+                                <includes>
+                                        <include>**/*</include>
+                                </includes>
+                        </resource>
+		</resources>
+		
+		<testResources>
+                        <testResource>
+                                <directory>src/test/resources</directory>
+                                <includes>
+                                        <include>**/*</include>
+                                </includes>
+                        </testResource>
+		</testResources>		
+	</build>
+        <!-- ======================================================================== -->
+        <!--  Report configurations, DO NOT MODIFY                                    -->
+        <!-- ======================================================================== -->
+        <reporting>
+                <plugins>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-site-plugin</artifactId>
+                                <version>${maven_site_plugin_version}</version>
+                                <configuration>
+                                        <outputEncoding>${file_encoding}</outputEncoding>
+                                        <inputEncoding>${file_encoding}</inputEncoding>
+                                </configuration>
+                        </plugin>
+
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-project-info-reports-plugin</artifactId>
+                                <version>2.6</version>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-javadoc-plugin</artifactId>
+                                <version>${maven_javadoc_plugin_version}</version>
+                                <configuration>
+                                        <charset>${file_encoding}</charset>
+                                        <encoding>${file_encoding}</encoding>
+                                </configuration>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>jxr-maven-plugin</artifactId>
+                                <version>2.0-beta-1</version>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-checkstyle-plugin</artifactId>
+                                <version>2.9.1</version>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>surefire-report-maven-plugin</artifactId>
+                                <version>2.0-beta-1</version>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>jdepend-maven-plugin</artifactId>
+                                <version>2.0-beta-2</version>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-pmd-plugin</artifactId>
+                                <version>2.7.1</version>
+                                <configuration>
+                                        <sourceEncoding>${file_encoding}</sourceEncoding>
+                                        <targetJdk>${java_source_version}</targetJdk>
+                                </configuration>
+                        </plugin>
+
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>findbugs-maven-plugin</artifactId>
+                                <version>2.5.2</version>
+                                <configuration>
+                                        <threshold>Normal</threshold>
+                                </configuration>
+                        </plugin>
+
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>cobertura-maven-plugin</artifactId>
+                                <version>2.5.2</version>
+                        </plugin>
+
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>dashboard-maven-plugin</artifactId>
+                                <version>1.0.0-beta-1</version>
+                        </plugin>
+                </plugins>
+        </reporting>
+
+</project>
