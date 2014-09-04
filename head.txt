@@ -37,8 +37,7 @@ span {
 请在POM文件中添加ACE Maven库的配置
 </h2>
 
-<div style="white-space: pre; line-height: 1; background: #000000; ">
-<span class="sc1">&lt;project&gt;</span><span class="sc0">
+<div style="white-space: pre; line-height: 1; background: #000000; "><span class="sc1">&lt;project&gt;</span><span class="sc0">
     </span><span class="sc1">&lt;repositories&gt;</span><span class="sc0">
         </span><span class="sc1">&lt;repository&gt;</span><span class="sc0">
             </span><span class="sc1">&lt;id&gt;</span><span class="sc0">acesdk-repository</span><span class="sc1">&lt;/id&gt;</span><span class="sc0">
