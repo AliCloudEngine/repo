@@ -9,6 +9,6 @@ find com -name .DS_Store -delete
 
 {
 	cat head.txt
-	find com -type f | sed 's#.*#<a href="./\0">./\0</a><br/>#'
+	find com -type f -not -wholename 'com/aliyun/openservices/*' | sed 's#.*#<a href="./\0">./\0</a><br/>#'
 	cat tail.txt
 } > index.html
